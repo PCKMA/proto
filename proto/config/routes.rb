@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
 #  get 'home/index'
-  resources :home, :contracts
+  resources :home, :inscontracts, :claims
 
 #  get 'home/authentication'
 

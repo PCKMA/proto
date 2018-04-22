@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    models:
+      inscontract: '契約'
+      claim: '保険金請求'
+    attributes:
+      inscontract:
+        id: '契約番号'
+        member_id: 'ID'
+        inception_datetime_at: '契約開始日'
+        expiry_datetime_at: '契約終了日'
+        product_id: '商品'
+        created_at: '登録日'
+        updated_at: '更新日'
+      claim:
+        id: '請求番号'
+        member_id: 'ID'
+        claim_datetime_at: '事故日'
+        product_id: '商品'
+        created_at: '登録日'
+        updated_at: '更新日'

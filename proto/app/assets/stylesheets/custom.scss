@@ -9,7 +9,7 @@ ul {
 .top-hero-wrapper {
   width: 100vw;
   height: 100vh;
-  background-image: image-url('bg-top.png');
+//  background-image: image-url('bg-top.png');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -28,6 +28,28 @@ ul {
 
   h2 {
     margin-bottom: 60px;
+  }
+}
+
+.home_table tr td {
+  border: 1px solid #ccc;
+
+}
+
+.navbar-transparent {
+  margin-bottom: 0px;
+  background-color: rgba(0,0,0,0.5);
+  a {
+    color: #fff !important;
+  }
+
+  .navbar-brand {
+    padding: 0px;
+    margin-top: 15px;
+  }
+
+  img {
+    height: 40px;
   }
 }
 
@@ -88,22 +110,6 @@ form-control {
   z-index: 10000;
 }
 
-.navbar-transparent {
-  margin-bottom: 0px;
-  background-color: rgba(0,0,0,0.5);
-  a {
-    color: #fff !important;
-  }
-
-  .navbar-brand {
-    padding: 0px;
-    margin-top: 15px;
-  }
-
-  img {
-    height: 40px;
-  }
-}
 
 .topic-new-wrapper {
   padding-top: 120px;

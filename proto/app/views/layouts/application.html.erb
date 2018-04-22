@@ -9,9 +9,16 @@
   </head>
 
   <body>
-    <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+      <div class="container">
+        <% if member_signed_in? %>
+          <span>member : <%= current_member.email %></span>
+        <% end %>
+        <span class="notice"><%= notice %></span>
+        <span class="alert"><%= alert %></span>
+      </div>
+    </nav>
 
+    <%= yield %>
   </body>
 </html>

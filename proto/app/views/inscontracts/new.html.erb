@@ -1,0 +1,32 @@
+<div class="top-hero-wrapper text-center">
+  <div class="container top-hero-container">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Inscontracts#new</h1>
+      <%= form_for Inscontract.new do |f| %>
+        <% Product.all.each do |each_product| %>
+          <div class="radio-inline">
+             <%= f.radio_button :product_id, each_product.id, checked: "unchecked" %>
+            <%= f.label each_product.name, class: "each_product_label" %>
+          </div>
+        <% end %>
+
+        <div class="contract_details">
+          <div class="form-group">
+            <%= f.label :inception %>
+            <%= f.datetime_select :inception_datetime_at, discard_hour: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :expiration %>
+            <%= f.datetime_select :expiry_datetime_at, discard_hour: true, class: 'form-control' %>
+          </div>
+
+        </div>
+        <%= f.submit 'submission', class: 'btn btn-black btn-block' %>
+      <% end %>
+      <p>
+        <%= link_to "home", home_index_path %>
+      </p>
+
+    </div>
+  </div>
+</div>

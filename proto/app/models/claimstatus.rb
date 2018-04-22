@@ -1,0 +1,2 @@
+class Claimstatus < ApplicationRecord
+end
