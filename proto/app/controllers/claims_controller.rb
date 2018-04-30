@@ -8,8 +8,8 @@ class ClaimsController < ApplicationController
   def create
     @claim = Claim.new(claim_params)
     @claim.member_id = current_member.id
-#    binding.pry
     if @claim.save
+      ClaimMailer.claim_accepted(current_member).deliver_now
       redirect_to home_index_path, notice: 'submission succeedded'
     else
       flash.now[:alert] = "submission failed"
@@ -19,7 +19,7 @@ class ClaimsController < ApplicationController
 
   private
   def claim_params
-    params.require(:claim).permit(:claim_datetime_at, :image, :description)
+    params.require(:claim).permit(:product_id, :claim_datetime_at, :state, :image, :description, :claim_amount)
   end
 
 end

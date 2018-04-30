@@ -1,0 +1,33 @@
+<div class="top-hero-wrapper text-center">
+  <div class="container top-hero-container">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Inscontracts#confirm</h1>
+        <table class="home_table">
+          <tr>
+            <td><%= t('activerecord.attributes.inscontract.id') %></td>
+            <td><%= Digest::SHA1.hexdigest(params[:id].to_s) %></td>
+          </tr>
+          <tr>
+            <td><%= t('activerecord.attributes.inscontract.inception_datetime_at') %></td>
+            <td><%= Inscontract.find(params[:id]).inception_datetime_at.strftime('%Y-%m-%d') %></td>
+          </tr>
+          <tr>
+            <td><%= t('activerecord.attributes.inscontract.expiry_datetime_at') %></td>
+            <td><%= Inscontract.find(params[:id]).expiry_datetime_at.strftime('%Y-%m-%d') %></td>
+          </tr>
+          <tr>
+            <td><%= t('activerecord.attributes.inscontract.product_id') %></td>
+            <td><%= Inscontract.find(params[:id]).product_id %></td>
+          </tr>
+          <tr>
+            <td><%= t('activerecord.attributes.inscontract.premium') %></td>
+            <td><%= Product.find(Inscontract.find(params[:id]).product_id).premium.to_d %></td>
+          </tr>
+        </table>
+      <p>
+        <%= link_to "home", home_index_path %>
+      </p>
+
+    </div>
+  </div>
+</div>

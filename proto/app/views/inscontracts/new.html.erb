@@ -5,7 +5,7 @@
       <%= form_for Inscontract.new do |f| %>
         <% Product.all.each do |each_product| %>
           <div class="radio-inline">
-             <%= f.radio_button :product_id, each_product.id, checked: "unchecked" %>
+            <%= f.radio_button :product_id, each_product.id, checked: "unchecked" %>
             <%= f.label each_product.name, class: "each_product_label" %>
           </div>
         <% end %>

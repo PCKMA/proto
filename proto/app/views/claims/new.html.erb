@@ -3,24 +3,29 @@
     <div class="col-md-8 col-md-offset-2">
       <h1>Claims#new</h1>
       <%= form_for @claim do |f| %>
-      <%#関係商品を選べるようにする%>
-<%#        <div class="form-group">
-          <%= f.label :accident_date %>
-<%#          <%= f.select Product, :product.name, class: 'form-control' %>
-<%#        </div>
-%>
+        <% Product.all.each do |each_product| %>
+          <div class="radio-inline">
+            <%= f.radio_button :product_id, each_product.id, checked: "unchecked" %>
+            <%= f.label each_product.name, class: "each_product_label" %>
+          </div>
+        <% end %>
         <div class="form-group">
-          <%= f.label :accident_date %>
+          <%= f.label t('activerecord.attributes.claim.claim_datetime_at') %>
           <%= f.datetime_select :claim_datetime_at, :discard_hour => true, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :image %>
+          <%= f.label t('activerecord.attributes.claim.image') %>
           <%= f.file_field :image, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :description %>
+          <%= f.label t('activerecord.attributes.claim.description') %>
           <%= f.text_area :description, class: 'form-control' %>
         </div>
+        <div class="form-group">
+          <%= f.label t('activerecord.attributes.claim.claim_amount') %>
+          <%= f.number_field :claim_amount, class: 'form-control' %>
+        </div>
+        <%= f.hidden_field :state, value: "claimed" %>
 
         <%= f.submit 'submission', class: 'btn btn-black btn-block' %>
       <% end %>

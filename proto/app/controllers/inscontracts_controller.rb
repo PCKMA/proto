@@ -8,13 +8,18 @@ class InscontractsController < ApplicationController
   def create
     @inscontract = Inscontract.new(inscontract_params)
     @inscontract.member_id = current_member.id
+    @inscontract.premium = Product.find(@inscontract.product_id).premium
     if @inscontract.save
-      redirect_to home_index_path, notice: 'contract submitted'
+      redirect_to inscontract_path(@inscontract.id), notice: 'contract submitted'
     else
       flash.now[:alert] = "contract submission failed"
       render :new
     end
   end
+
+  def show
+  end
+
 
   private
   def inscontract_params

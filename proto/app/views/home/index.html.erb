@@ -5,10 +5,10 @@
       <ul>
         <li>
           <p>
-            <%= link_to "get contract", new_inscontract_path %>
+            <%= link_to t('activerecord.models.inscontract'), new_inscontract_path %>
           </p>
         </li>
-        <%= link_to "claim", new_claim_path %>
+        <%= link_to t('activerecord.models.claim'), new_claim_path %>
         </li>
         <li>
           <p>
@@ -20,18 +20,22 @@
       <p>recent contracts</p>
       <table class="home_table">
         <tr>
-          <td><%= t('activerecord.attributes.inscontract.id') %></td>
+          <td><%= t('activerecord.attributes.inscontract.created_at') %></td>
           <td><%= t('activerecord.attributes.inscontract.inception_datetime_at') %></td>
           <td><%= t('activerecord.attributes.inscontract.expiry_datetime_at') %></td>
           <td><%= t('activerecord.attributes.inscontract.product_id') %></td>
+          <td><%= t('activerecord.attributes.inscontract.premium') %></td>
+          <td><%= t('activerecord.attributes.inscontract.id') %></td>
         </tr>
         <% Inscontract.includes(:member).each do |each_contract| %>
           <tr class="contracts">
             <% if each_contract.member_id == current_member.id %>
-              <td><%= each_contract.id %></td>
+              <td><%= each_contract.created_at.strftime('%Y-%m-%d') %></td>
               <td><%= each_contract.inception_datetime_at.strftime('%Y-%m-%d') %></td>
               <td><%= each_contract.expiry_datetime_at.strftime('%Y-%m-%d') %></td>
               <td><%= Product.find_by(id: each_contract.product_id).name %></td>
+              <td><%= each_contract.premium %></td>
+              <td><%= Digest::SHA1.hexdigest(each_contract.id.to_s) %></td>
             <% end %>
           </tr>
         <% end %>
@@ -40,15 +44,22 @@
       <p>recent claims</p>
       <table class="home_table">
         <tr>
-          <td><%= t('activerecord.attributes.claim.id') %></td>
+          <td><%= t('activerecord.attributes.claim.created_at') %></td>
           <td><%= t('activerecord.attributes.claim.claim_datetime_at') %></td>
+          <td><%= t('activerecord.attributes.claim.product_id') %></td>
+          <td><%= t('activerecord.attributes.claim.claim_amount') %></td>
+          <td><%= t('activerecord.attributes.claim.state') %></td>
+          <td><%= t('activerecord.attributes.claim.id') %></td>
         </tr>
         <% Claim.includes(:member).each do |each_claim| %>
           <tr class="claim">
             <% if each_claim.member_id == current_member.id %>
-              <td><%= each_claim.id %></td>
+              <td><%= each_claim.created_at.strftime('%Y-%m-%d') %></td>
               <td><%= each_claim.claim_datetime_at.strftime('%Y-%m-%d') %></td>
-<%#              <td><%= Product.find_by(id: each_contract.product_id).name %></td>
+              <td><%= Product.find_by(id: each_claim.product_id).name %></td>
+              <td><%= each_claim.claim_amount %></td>
+              <td><%= each_claim.state %></td>
+              <td><%= each_claim.id %></td>
             <% end %>
           </tr>
         <% end %>

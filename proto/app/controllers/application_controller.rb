@@ -1,9 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
-  protect_from_forgery with: :exception
+#  before_action :test
+  protect_from_forgery with: :exception #2018/4/22 CSRF保護
 
   def after_sign_in_path_for(resource)
-    home_index_path
+    if admin_user_signed_in?
+       admin_dashboard_path
+    else
+      home_index_path
+    end
   end
 
 #  def current_member
@@ -46,7 +51,13 @@ class ApplicationController < ActionController::Base
     end
 
     def sign_in_required
-      redirect_to new_member_session_url unless member_signed_in?
+      redirect_to new_member_session_url unless member_signed_in? || admin_user_signed_in?
     end
+
+#    def test
+#      if admin_user_signed_in?
+#        redirect_to admin_dashboard_path
+#      end
+#    end
 
 end
